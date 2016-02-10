@@ -1,3 +1,5 @@
+import org.omg.CORBA.DynAnyPackage.Invalid;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -19,13 +21,20 @@ public class Deck
 		int cardValue;
 		char cardSuit;
 		
-		
+
 		for(int deckIndex=0; deckIndex<DECK_SIZE; deckIndex++)
 		{
 			cardValue = (deckIndex % CARDS_PER_SUIT) + 1;  //these calculations could have been done in the call, but were separated for clarity
 			cardSuit = CARD_SUIT_CHARS[deckIndex/CARDS_PER_SUIT];
-			Card tempCard = new Card(cardSuit, cardValue);  //again, could have been done within the next statement but separated for clarity
-			this.deck.add(tempCard);
+			try {
+				Card tempCard = new Card(cardSuit, cardValue);  //again, could have been done within the next statement but separated for clarity
+				this.deck.add(tempCard);
+			}
+			catch (InvalidCardSuitException badChar) {
+				System.out.println(badChar.getSuitDesignator());
+			} catch (InvalidCardValueException badValue){
+				System.out.println(badValue.getValue());
+			}
 		}
 	}
 

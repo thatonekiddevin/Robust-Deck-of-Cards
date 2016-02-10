@@ -23,10 +23,26 @@ public class Card
 
 	// Card(char suit, int value)  : creates a card of the specified suit (H, S, C, D) and value (1-13)
 	// 1: First method set written and tested
-	public Card(char inCardSuit, int inCardValue)
+	public Card(char inCardSuit, int inCardValue) throws InvalidCardSuitException, InvalidCardValueException
 	{
 		int suitSequence;
-		
+		boolean charValidInput = false;
+
+		for (int i = 0; i < CARD_SUIT_CHARS.length; i++) {
+			if (inCardSuit == CARD_SUIT_CHARS[i]) {
+				charValidInput = true;
+			}
+		}
+
+		if (!charValidInput) {
+			InvalidCardSuitException suitInvalid = new InvalidCardSuitException(inCardSuit);
+			throw suitInvalid;
+		}
+
+		if (inCardValue < 0 || inCardValue > 13) {
+			InvalidCardValueException valueInvalid = new InvalidCardValueException(inCardValue);
+			throw valueInvalid;
+		}
 		for(suitSequence = 0; suitSequence < this.NUMBER_OF_SUITS; suitSequence++)
 		{
 			if(this.CARD_SUIT_CHARS[suitSequence] == inCardSuit)
@@ -34,7 +50,7 @@ public class Card
 				break;  //Suit found
 			}
 		}
-		
+
 		this.cardID = (suitSequence * this.CARDS_PER_SUIT) + (inCardValue - 1);
 	}
 
