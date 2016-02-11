@@ -39,7 +39,7 @@ public class Card
 			throw suitInvalid;
 		}
 
-		if (inCardValue < 0 || inCardValue > 13) {
+		if (inCardValue < 1 || inCardValue > 13) {
 			InvalidCardValueException valueInvalid = new InvalidCardValueException(inCardValue);
 			throw valueInvalid;
 		}
@@ -80,7 +80,7 @@ public class Card
 		return this.CARD_SUIT_NAMES[suitSequence];
 	}
 
-	//String getValueName() : returns String name of card value (i.e. “Ace”, “Two”, … , “Queen”, “King”)
+	//String getValueName() : returns String name of card value (i.e. â€œAceâ€�, â€œTwoâ€�, â€¦ , â€œQueenâ€�, â€œKingâ€�)
 	// 3: Third method set written and tested (also altered toString to use this method
 	public String getValueName()
 	{
@@ -89,7 +89,7 @@ public class Card
 		
 	}
 
-	//String toString() :  returns a representation of the Card as <suit name> +  “ “ + <value name>
+	//String toString() :  returns a representation of the Card as <suit name> +  â€œ â€œ + <value name>
 	// 1: First method set written and tested
 	public String toString()
 	{
