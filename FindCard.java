@@ -15,7 +15,6 @@ public class FindCard {
         Deck gameDeck = new Deck();
         gameDeck.shuffle();
 
-
         while(breakFree) {
 
             System.out.println("Enter a card value from 1-13: ");
@@ -34,8 +33,15 @@ public class FindCard {
             }
         }
         
-        System.out.println("You created: ");
-        System.out.println(userCard);
+        System.out.println("You created: " + userCard);
+
+        String userCardString = userCard.toString();
+
+        for (int deckIndex = 0; deckIndex < 52; deckIndex++) {
+            if(gameDeck.getCard(deckIndex).toString().equals(userCardString)) {
+                System.out.println("Your card is at position " + deckIndex + " in the deck!");
+            }
+        }
         
     }
 }
